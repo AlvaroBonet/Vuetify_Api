@@ -92,7 +92,7 @@ function cambiarBool(){
         <div class="row row-cols-sm-1 row-cols-md-2 row-cols-lg-4">
             <div class="col" v-for="(index,item) in listaFav" :key="item">
                 <div class="card" style="margin-bottom: 5%;">
-                    <div class="content">
+                    <div class="content" >
                         <div class="back">
                         <div class="back-content">
                             <svg stroke="#ffffff" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" height="50px" width="50px" fill="#ffffff">
