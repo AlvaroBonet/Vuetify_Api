@@ -14,14 +14,22 @@ async function leerApi() {
 
 onBeforeMount(leerApi);
 
-function recorrer(){
+async function recorrer() {
+    let credentialsCorrectas = false;
 
-    for(const miembro of lista.value){
-        if (miembro.username == username.value && miembro.email == email.value){
-            bool.value = !bool.value
-        }else{
-            console.log('Credenciales incorrectas');
+    for (const miembro of lista.value) {
+        if (miembro.username === username.value && miembro.email === email.value) {
+            bool.value = !bool.value;
+            credentialsCorrectas = true;
+            break; // Termina el bucle al encontrar credenciales correctas
         }
+    }
+
+    if (credentialsCorrectas) {
+        // Agrega el alert cuando las credenciales son correctas
+        alert("¡Enhorabuena! Has iniciado sesión correctamente.");
+    } else {
+        console.log('Credenciales incorrectas');
     }
 }
 

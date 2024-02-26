@@ -5,6 +5,7 @@ import axios from 'axios';
 const lista = ref([]);
 const listaFav = ref([]);
 const bool = ref(true);
+const searchTerm = ref('');
 
 async function leerApi() {
     const response = await axios.get("https://jsonplaceholder.typicode.com/posts");
@@ -37,10 +38,28 @@ function cambiarBool(){
   bool.value=!bool.value;
 }
 
+function filtrarLista() {
+    const termino = searchTerm.value.toLowerCase();
+    return lista.value.filter(item => {
+        const titulominuscula = item.title.toLowerCase();
+        return titulominuscula.includes(termino);
+    });
+}
+
 
 </script>
 
 <template>
+    <nav class="navbar bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">Inicio</a>
+        <form class="d-flex" role="search">
+          <input v-model="searchTerm" class="form-control me-2" type="search"  @keyup="filtrarLista" aria-label="Search" placeholder="Buscar por título">
+          <button class="btn btn-outline-success" type="button">Buscar...</button>
+        </form>
+      </div>
+    </nav>
+    
     <h1 style="margin-bottom: 5%; margin-top: 3%; margin-left: 44.5%;">Bienvenido</h1>
     <button style="margin-bottom: 7%; margin-left: 47%;" class="btn btn-primary" @click=cambiarBool><a>Favoritos</a></button>
     <div v-if="bool" class="container text-center">
